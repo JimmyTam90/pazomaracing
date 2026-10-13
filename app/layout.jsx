@@ -27,12 +27,17 @@ export default function RootLayout({ children }) {
               </span>
               <span>{SITE.name}</span>
             </a>
+            <nav aria-label="Page sections" className="ml-auto flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              <a href={`${internalPath("")}#categories`} className="underline">Categories</a>
+              <a href={`${internalPath("")}#fitment`} className="underline">Fitment</a>
+              <a href={`${internalPath("")}#faq`} className="underline">FAQ</a>
+            </nav>
           </div>
         </header>
         {children}
         <footer className="mt-16 border-t border-zinc-800 px-4 py-10 text-sm text-zinc-400">
           <div className="mx-auto max-w-6xl space-y-3">
-            <p>As an affiliate publisher, we may earn a commission from qualifying purchases made through links on this page, at no additional cost to you. {SITE.name} is independent and is not the Pazoma Racing store.</p>
+            <p>{SITE.name} is an independent product guide. We may earn a commission when you purchase through qualifying links on this page, at no additional cost to you. We are not the Pazoma Racing store. Contact: {SITE.contactEmail}</p>
             <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
               {["privacy", "terms", "affiliate-disclosure", "contact"].map((s) => (
                 <a key={s} href={internalPath(`/${s}`)} className="underline">{s.replace("-", " ")}</a>
