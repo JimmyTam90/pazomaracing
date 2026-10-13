@@ -16,6 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head><style dangerouslySetInnerHTML={{ __html: "body{margin:0;background:#18181B;color:#F4F4F5;font-family:Arial,sans-serif}img{max-width:100%;height:auto}a{color:inherit}main,header>div,footer>div{max-width:72rem;margin:0 auto;padding:0 1rem}" }} /></head>
       <body className="pb-24 md:pb-0">
         <header className="border-b border-zinc-800">
           <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">

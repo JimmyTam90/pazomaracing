@@ -1,8 +1,8 @@
-// Hub–Spoke setup. The Spoke's real Vercel domain is https://pazomaracing.vercel.app (no hyphen).
-// assetPrefix is derived at build time, never hardcoded:
-//   1. SPOKE_PROJECT_URL (explicit override, e.g. https://pazomaracing.vercel.app)
-//   2. VERCEL_PROJECT_PRODUCTION_URL (set automatically by Vercel; production builds only)
-//   3. otherwise unset -> relative /_next/static/*, which works for direct access and previews.
+// Hub–Spoke setup. assetPrefix is derived at build time, never hardcoded.
+// Priority (so a stale env var can never override the real deployment domain):
+//   1. VERCEL_PROJECT_PRODUCTION_URL - set automatically by Vercel on production builds
+//   2. SPOKE_PROJECT_URL - manual value, used only when Vercel's variable is absent (e.g. local/CI)
+//   3. unset -> relative /_next/static/*, which always works for direct access and previews.
 const SUB = process.env.PUBLIC_SUBPATH || "/pazoma-racing";
 
 function toOrigin(value) {
@@ -12,8 +12,9 @@ function toOrigin(value) {
 }
 
 const spokeOrigin =
-  toOrigin(process.env.SPOKE_PROJECT_URL) ||
-  (process.env.VERCEL_ENV === "production" ? toOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL) : undefined);
+  (process.env.VERCEL_ENV === "production" ? toOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL) : undefined) ||
+  (process.env.VERCEL ? undefined : toOrigin(process.env.SPOKE_PROJECT_URL));
+if (process.env.SPOKE_PROJECT_URL) console.log("[next.config] assetPrefix =", spokeOrigin || "(none)");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

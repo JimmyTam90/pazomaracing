@@ -9,7 +9,7 @@ export default function Home() {
         {/* Mobile order: image -> title/description -> CTA */}
         <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 lg:order-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={HERO.image.src} alt={HERO.image.alt} width={HERO.image.width} height={HERO.image.height} className="aspect-[9/4] w-full object-cover" />
+          <img src={HERO.image.src} alt={HERO.image.alt} width={HERO.image.width} height={HERO.image.height} className="aspect-[9/4] w-full object-cover" style={{ maxWidth: "100%", height: "auto" }} />
         </div>
         <div className="lg:order-1">
           <h1 className="text-3xl font-black leading-tight sm:text-5xl">Upgrade parts for Harley, cruiser and street bikes</h1>
