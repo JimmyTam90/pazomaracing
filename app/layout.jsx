@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head><style dangerouslySetInnerHTML={{ __html: "body{margin:0;background:#18181B;color:#F4F4F5;font-family:Arial,sans-serif}img{max-width:100%;height:auto}a{color:inherit}main,header>div,footer>div{max-width:72rem;margin:0 auto;padding:0 1rem}" }} /></head>
+      <head><style dangerouslySetInnerHTML={{ __html: "body{margin:0;background:#18181B;color:#F4F4F5;font-family:Arial,sans-serif}img{max-width:100%;height:auto}:where(a){color:inherit}main,header>div,footer>div{max-width:72rem;margin:0 auto;padding:0 1rem}:where(a[data-cta]){display:inline-block;box-sizing:border-box;background:#D97706;color:#fff;padding:12px 20px;border-radius:6px;font-weight:700;text-decoration:none;text-align:center}:where(ul[data-grid]){display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;list-style:none;margin:24px 0 0;padding:0}:where(ul[data-grid]>li){display:flex;flex-direction:column;background:#27272A;border-radius:12px;overflow:hidden}:where(ul[data-grid]>li>div){display:flex;flex-direction:column;flex:1;padding:16px}" }} /></head>
       <body className="pb-24 md:pb-0">
         <header className="border-b border-zinc-800">
           <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">

@@ -12,8 +12,9 @@ Only /collections/mirrors was fetched successfully (HTTP 200). The others were s
 but not fetched, and ?ref= attribution is untested. Click each card once after deploying.
 
 ## Hub–Spoke
-No basePath, no assetPrefix by default. Spoke rewrite /pazoma-racing/* -> /*. Logo: public/logo.png (served at /pazoma-racing/logo.png).
-Via the Hub, /_next/static/* must reach the Spoke (Hub rewrite) or set HUB_ASSET_PREFIX=https://pazomaracing.vercel.app.
+No basePath. assetPrefix is set only if SPOKE_PROJECT_URL is defined at build time; otherwise assets are relative.
+If Vercel has SPOKE_PROJECT_URL set to anything other than your exact live domain, delete it.
+Spoke rewrite /pazoma-racing/* -> /*. Logo: public/logo.png. Tailwind/PostCSS/autoprefixer are in dependencies.
 
 ## Tracking
 GA4 / Google Ads / Meta Pixel load only when NEXT_PUBLIC_* IDs are set. No consent banner is included.

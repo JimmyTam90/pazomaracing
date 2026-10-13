@@ -1,20 +1,23 @@
-// Spoke serves its own assets: NO assetPrefix by default -> standard relative /_next/static/*.
-// Only set HUB_ASSET_PREFIX (e.g. https://pazomaracing.vercel.app) if the Hub origin cannot
-// forward /_next/* and you deliberately want assets pulled from the Spoke origin.
+// assetPrefix is set ONLY when SPOKE_PROJECT_URL is defined at build time.
+// Otherwise it is undefined and Next.js uses relative /_next/static/* (correct for direct access).
+// No hardcoded domains anywhere in this file.
 const SUB = process.env.PUBLIC_SUBPATH || "/pazoma-racing";
-const optIn = process.env.HUB_ASSET_PREFIX;
+
+function toOrigin(value) {
+  if (!value || !value.trim()) return undefined;
+  const v = value.trim();
+  try { return new URL(/^https?:\/\//i.test(v) ? v : `https://${v}`).origin; } catch { return undefined; }
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
-  assetPrefix: optIn && /^https?:\/\//.test(optIn) ? optIn.replace(/\/+$/, "") : undefined,
+  assetPrefix: toOrigin(process.env.SPOKE_PROJECT_URL),
   async rewrites() {
-    // Makes /pazoma-racing/* work on the Spoke whether or not the Hub strips the prefix.
     return { beforeFiles: [{ source: `${SUB}/:path*`, destination: "/:path*" }] };
   },
   async headers() {
-    // Public build assets: "*" allows loading from pazomaracing.vercel.app and primegearlab.com.
     return [{ source: "/_next/static/:path*", headers: [{ key: "Access-Control-Allow-Origin", value: "*" }] }];
   },
 };

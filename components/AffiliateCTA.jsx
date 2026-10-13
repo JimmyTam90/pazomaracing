@@ -14,7 +14,7 @@ export default function AffiliateCTA({ productKey, children, className = "", pla
     } catch {}
   };
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" onClick={track}
+    <a data-cta="" href={url} target="_blank" rel="noopener noreferrer" onClick={track}
        className={`inline-flex min-h-[48px] items-center justify-center rounded-md bg-brand px-5 py-3 text-center font-bold text-black hover:bg-amber-500 ${className}`}>
       {children}
     </a>
