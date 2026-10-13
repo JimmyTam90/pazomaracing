@@ -26,7 +26,7 @@ export default function Home() {
             <li key={c.id} className="flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
               {c.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={c.image.src} alt={c.image.alt} loading="lazy" className="aspect-square w-full bg-white object-contain" />
+                <img src={c.image.src} alt={c.image.alt} width={300} height={300} loading="lazy" style={{ maxWidth: "100%", height: "auto" }} className="aspect-square w-full bg-white object-contain" />
               ) : (
                 <div className="flex aspect-square w-full items-center justify-center bg-zinc-800 px-4 text-center font-semibold text-zinc-300">{c.name}</div>
               )}

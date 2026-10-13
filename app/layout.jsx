@@ -20,8 +20,10 @@ export default function RootLayout({ children }) {
         <header className="border-b border-zinc-800">
           <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
             <a href={internalPath("")} className="flex items-center gap-3 font-extrabold" aria-label={`${SITE.name} home`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={SITE.logoPath} alt="" width={40} height={40} style={{ width: 40, height: 40, maxWidth: 40, maxHeight: 40, objectFit: "contain" }} />
+              <span className="inline-block h-10 w-10 shrink-0 overflow-hidden" style={{ width: 40, height: 40, maxWidth: 40, maxHeight: 40, display: "inline-block", overflow: "hidden" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={SITE.logoPath} alt="" width={40} height={40} className="h-10 w-10 max-h-10 max-w-10 object-contain" style={{ width: 40, height: 40, maxWidth: 40, maxHeight: 40, objectFit: "contain" }} />
+              </span>
               <span>{SITE.name}</span>
             </a>
           </div>
